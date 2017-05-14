@@ -1,0 +1,14 @@
+.stages-container {
+  width: 80%;
+  height: 20px;
+  margin: 0 auto;
+}
+
+.each-stage {
+  height: 20px;
+  display: inline-block;
+}
+
+p {
+  margin: 0;
+}

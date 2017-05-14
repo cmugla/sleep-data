@@ -5,6 +5,8 @@ const logger = require('morgan')
 const path = require('path')
 const bodyParser = require('body-parser')
 
+const apiRoute = require('./routes/apiRoute.js')
+
 const app = express()
 const PORT = process.env.PORT || process.argv[2] || 3000
 const env = process.env.NODE_ENV || 'dev';
@@ -22,6 +24,7 @@ app.set('view engine', 'ejs')
 // app.set('views', path.join(__dirname, 'views'));
 
 /* ROUTES */
+app.use('/api', apiRoute)
 app.use(express.static(path.join(__dirname, 'dist')))
 
 // set up server
