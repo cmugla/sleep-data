@@ -3,7 +3,11 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Doughnut, Line, Bar } from 'react-chartjs-2';
 
-import EachStageItem from './EachStageItem.js'
+import users from '../data/users.js'
+
+import StageBlockItem from './StageBlockItem.js'
+import UserBlockItem from './UserBlockItem.js'
+import DateBlockItem from './DateBlockItem.js'
 
 import AjaxAdapter from '../helpers/ajaxAdapter.js'
 
@@ -16,11 +20,17 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    ajax.getSleepData("userOne").then(data => {
-      console.log(data)
+    // start with userOne and first date when page loads
+    const userOne = "userOne"
+    const index = 0
+    this.getData(userOne, index)
+  }
+
+  getData = (user, index) => {
+    ajax.getSleepData(user).then(data => {
       this.setState({
         rawData: data,
-        stages: data.intervals[0].stages
+        stages: data.intervals[index].stages
       })
       this.setPrettyData()
     })
@@ -38,10 +48,6 @@ export default class App extends Component {
     this.setState({ durationTotal })
   }
 
-  setStages = () => {
-
-  }
-
   handleElementClick = elements => {
     console.log('handleElementClick', elements)
   }
@@ -50,7 +56,7 @@ export default class App extends Component {
     console.log("you're excellent");
     console.log("\n.-        -.\n| ,-. ,-.  |\n| |   | |  |\n| `-' `-|  |\n`-     ,| -'\n       `'    ")
 
-    const { durationTotal, stages } = this.state
+    const { durationTotal, stages, rawData } = this.state
 
     const data = {
         labels: ['Item 1', 'Item 2', 'Item 3'],
@@ -67,6 +73,62 @@ export default class App extends Component {
             }
         ]
     }
+
+    return (
+      <div>
+        <h1>Sleep Data!</h1>
+        <div className="users-container">
+          {
+            users
+            &&
+            users.map((each, i) => (
+              <UserBlockItem
+                key={`user-${i}`}
+                user={each}
+                getData={this.getData}
+              />
+            ))
+          }
+        </div>
+        <div className="date-container">
+          {
+            rawData
+            &&
+            rawData.intervals
+            &&
+            rawData.intervals.map((each, i) => (
+              <DateBlockItem
+                key={`date-${i}`}
+                date={each.ts}
+              />
+            ))
+          }
+        </div>
+        <div className="stages-container">
+          {
+            stages
+            &&
+            stages.map((each, i) => (
+              <StageBlockItem
+                key={`${each.stage}-${i}`}
+                total={durationTotal}
+                duration={each.duration}
+                type={each.stage}
+              />
+            ))
+          }
+        </div>
+        <div className="data-container">
+          <Bar data={data} onElementsClick={this.handleElementClick} />
+        </div>
+      </div>
+    )
+  }
+}
+
+render(<App />, document.getElementById('app'));
+
+
 
     // var data = {
     //   labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -138,30 +200,3 @@ export default class App extends Component {
     //     }
     //   ],
     // };
-
-
-
-    return (
-      <div>
-        <h1>Hello World</h1>
-        <div className="stages-container">
-          {
-            stages
-            &&
-            stages.map((each, i) => (
-              <EachStageItem
-                key={`${each.stage}-${i}`}
-                total={durationTotal}
-                duration={each.duration}
-                type={each.stage}
-              />
-            ))
-          }
-        </div>
-        <Bar data={data} onElementsClick={this.handleElementClick} />
-      </div>
-    )
-  }
-}
-
-render(<App />, document.getElementById('app'));

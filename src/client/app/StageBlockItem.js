@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class EachStageItem extends Component {
+class StageBlockItem extends Component {
   state={
     colors: {
       awake: "#FF6384",
@@ -12,7 +12,7 @@ class EachStageItem extends Component {
 
   render() {
     const { total, duration, type } = this.props
-    console.log('EachStageItem duration total', duration, total)
+    console.log('StageBlockItem duration total', duration, total)
     const durationPercentage = (duration / total) * 100 
     const styleObj = {
       backgroundColor: this.state.colors[type],
@@ -27,4 +27,4 @@ class EachStageItem extends Component {
   }
 }
 
-export default EachStageItem
+export default StageBlockItem

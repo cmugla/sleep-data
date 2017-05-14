@@ -29,5 +29,5 @@ app.use(express.static(path.join(__dirname, 'dist')))
 
 // set up server
 app.listen(PORT, function(){
-  console.log("server up and running on port ", PORT)
+  console.log("server up and running on port", PORT)
 })

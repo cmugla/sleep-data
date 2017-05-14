@@ -15,8 +15,6 @@ function getSleepData(req, res, next) {
       json: true
     },(err, response, body)=>{
       if(err) throw err;
-
-      console.log(response)
       res.results = body;
       next();
     })
