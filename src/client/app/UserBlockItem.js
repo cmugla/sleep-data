@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 class UserBlockItem extends Component {
   state={}
 
-  handleClickUser = () => {
-    this.props.getData(this.props.user.code, 0)
+  handleClickUser = async () => {
+    await this.props.update(user.code)
+    this.props.getData()
   }
 
   render() {

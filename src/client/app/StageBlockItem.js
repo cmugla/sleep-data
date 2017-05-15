@@ -12,7 +12,6 @@ class StageBlockItem extends Component {
 
   render() {
     const { total, duration, type } = this.props
-    console.log('StageBlockItem duration total', duration, total)
     const durationPercentage = (duration / total) * 100 
     const styleObj = {
       backgroundColor: this.state.colors[type],

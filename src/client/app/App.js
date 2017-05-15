@@ -17,24 +17,32 @@ export default class App extends Component {
   state={
     rawData: null,
     prettyData: null,
+    activeUser: 'userOne',
+    activeDateIndex: 0,
   }
 
   componentDidMount = () => {
-    // start with userOne and first date when page loads
-    const userOne = "userOne"
-    const index = 0
-    this.getData(userOne, index)
+    this.getData()
   }
 
-  getData = (user, index) => {
-    ajax.getSleepData(user).then(data => {
+  getData = () => {
+    const { activeUser, activeDateIndex } = this.state
+    ajax.getSleepData(activeUser).then(data => {
       this.setState({
         rawData: data,
-        stages: data.intervals[index].stages
+        stages: data.intervals[activeDateIndex].stages
       })
       this.setPrettyData()
     })
   }
+
+  updateActiveUser = (user) => this.setState({
+    activeUser: user
+  })
+
+  updateActiveDate = (index) => this.setState({
+    activeDateIndex: index
+  })
 
   setPrettyData = () => {
     this.setDurationTotal()
@@ -56,7 +64,8 @@ export default class App extends Component {
     console.log("you're excellent");
     console.log("\n.-        -.\n| ,-. ,-.  |\n| |   | |  |\n| `-' `-|  |\n`-     ,| -'\n       `'    ")
 
-    const { durationTotal, stages, rawData } = this.state
+    const { durationTotal, stages, rawData, activeUser, activeDateIndex } = this.state
+    const { updateActiveUser, updateActiveDate, getData, handleElementClick } = this
 
     const data = {
         labels: ['Item 1', 'Item 2', 'Item 3'],
@@ -85,7 +94,9 @@ export default class App extends Component {
               <UserBlockItem
                 key={`user-${i}`}
                 user={each}
-                getData={this.getData}
+                getData={getData}
+                activeUser={activeUser}
+                update={updateActiveUser}
               />
             ))
           }
@@ -100,6 +111,10 @@ export default class App extends Component {
               <DateBlockItem
                 key={`date-${i}`}
                 date={each.ts}
+                index={i}
+                getData={getData}
+                activeIndex={activeDateIndex}
+                update={updateActiveDate}
               />
             ))
           }
@@ -119,7 +134,7 @@ export default class App extends Component {
           }
         </div>
         <div className="data-container">
-          <Bar data={data} onElementsClick={this.handleElementClick} />
+          <Bar data={data} onElementsClick={handleElementClick} />
         </div>
       </div>
     )
