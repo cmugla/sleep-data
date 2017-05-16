@@ -8,10 +8,11 @@ import prettyDate from '../data/prettyDate.js'
 export default class ColumnMiddle extends Component {
   render() {
     const { intervals, getData, update, activeIndex } = this.props
+    const prettyActiveDate = prettyDate(intervals[activeIndex].ts)
 
     return (
       <div className="column-middle">
-        <h2>{prettyDate(intervals[activeIndex].ts)}</h2>
+        <h2>{prettyActiveDate}</h2>
         <div className="date-container">
           {
             intervals

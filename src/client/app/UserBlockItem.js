@@ -9,10 +9,10 @@ class UserBlockItem extends Component {
   }
 
   render() {
-    const { user } = this.props
+    const { user, activeUser } = this.props
 
     return (
-      <div className="each-user" onClick={this.handleClickUser}>
+      <div className={`each-user ${user.code == activeUser ? 'active' : ''}`} onClick={this.handleClickUser}>
         <p>{user.name}</p>
       </div>
     )

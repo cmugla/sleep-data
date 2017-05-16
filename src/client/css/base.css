@@ -18,7 +18,7 @@ body {
 	cursor: pointer;
 }
 
-.each-date:hover, .each-user:hover {
+.each-date:hover, .each-user:hover, .active {
 	font-weight: bold;
 }
 
@@ -76,4 +76,13 @@ p {
 .sleep-score-container h1 {
 	margin: 12px;
 	color: white;
+}
+
+.users-container {
+	position: absolute;
+	bottom: 20px;
+}
+.date-container {
+	position: absolute;
+	bottom: calc(20px + 5rem);
 }

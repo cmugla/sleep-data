@@ -11,10 +11,11 @@ class DateBlockItem extends Component {
   }
 
   render() {
+    const { activeIndex, index } = this.props
     const dateStr = prettyDate(this.props.date)
 
     return (
-      <div className="each-date" onClick={this.handleClickDate}>
+      <div className={`each-date ${activeIndex == index ? 'active' : ''}`} onClick={this.handleClickDate}>
         <p>{dateStr}</p>
       </div>
     )
