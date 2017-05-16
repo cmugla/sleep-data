@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import prettyDate from '../data/prettyDate.js'
+
 class DateBlockItem extends Component {
   state={}
 
@@ -9,11 +11,11 @@ class DateBlockItem extends Component {
   }
 
   render() {
-    let date = this.props.date.toLocaleString()
+    const dateStr = prettyDate(this.props.date)
 
     return (
       <div className="each-date" onClick={this.handleClickDate}>
-        <p>{date}</p>
+        <p>{dateStr}</p>
       </div>
     )
   }

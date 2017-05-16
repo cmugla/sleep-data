@@ -6,7 +6,7 @@ import users from '../data/users.js'
 
 export default class ColumnLeft extends Component {
   render() {
-    const { activeUser, getData, update } = this.props
+    const { activeUser, getData, update, sleepScore } = this.props
 
     return (
       <div className="column-left">
@@ -26,7 +26,9 @@ export default class ColumnLeft extends Component {
             ))
           }
         </div>
-        
+        <div className="sleep-score-container">
+          <h1>{sleepScore}</h1>
+        </div>
       </div>
     )
   }

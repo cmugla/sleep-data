@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import DateBlockItem from './DateBlockItem'
 
 import { colorArray } from '../data/colors.js'
+import prettyDate from '../data/prettyDate.js'
 
 export default class ColumnMiddle extends Component {
   render() {
@@ -10,7 +11,7 @@ export default class ColumnMiddle extends Component {
 
     return (
       <div className="column-middle">
-        <h2>{intervals && intervals[activeIndex] && intervals[activeIndex].ts}</h2>
+        <h2>{prettyDate(intervals[activeIndex].ts)}</h2>
         <div className="date-container">
           {
             intervals
@@ -36,7 +37,7 @@ export default class ColumnMiddle extends Component {
               return (
                 <div className="key-item" key={`key-item-${i}`}>
                   <div className="color-block" style={bg} />
-                  <p>{each.label}</p>
+                  <span>{each.label}</span>
                 </div>
               )
             })

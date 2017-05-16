@@ -1,5 +1,7 @@
 body {
 	font-family: sans-serif;
+	margin: 0;
+	width: 100%;
 }
 
 .stages-container {
@@ -12,12 +14,66 @@ body {
   display: block;
 }
 
+.each-date, .each-user {
+	cursor: pointer;
+}
+
+.each-date:hover, .each-user:hover {
+	font-weight: bold;
+}
+
 p {
   margin: 0;
 }
 
+.key-item {
+	margin: 3px 0;
+}
 .color-block {
 	width: 10px;
 	height: 10px;
 	display: inline-block;
+	margin-right: 10px;
+}
+
+.column-left, .column-middle {
+	width: 217px;
+	height: 100vh;
+	position: fixed;
+}
+
+.column-left {
+	left: 0;
+	background-color: #343b62;
+	color: white;
+	padding-left: 1rem;
+}
+
+.column-middle {
+	left: calc(217px + 1rem);
+	padding-top: 5rem;
+	padding-left: 1rem;
+}
+
+.column-right {
+	width: calc(100% - 217px - 217px - 2rem);
+    position: absolute;
+	right: 0;
+	padding-left: 1rem;
+	padding-top: 1rem;
+}
+
+.sleep-score-container {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background-color: #00e2b1;
+	border: #c1a8d7 solid 3px;
+	position: absolute;
+	top: 20px;
+	right: -30px;
+}
+.sleep-score-container h1 {
+	margin: 12px;
+	color: white;
 }
