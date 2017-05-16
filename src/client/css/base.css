@@ -1,13 +1,23 @@
+body {
+	font-family: sans-serif;
+}
+
 .stages-container {
-  height: 20px;
+  width: 20px;
   margin: 0 1.5rem;
 }
 
 .each-stage {
   height: 20px;
-  display: inline-block;
+  display: block;
 }
 
 p {
   margin: 0;
+}
+
+.color-block {
+	width: 10px;
+	height: 10px;
+	display: inline-block;
 }

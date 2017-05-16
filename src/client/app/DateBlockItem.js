@@ -9,7 +9,7 @@ class DateBlockItem extends Component {
   }
 
   render() {
-    const { date } = this.props
+    let date = this.props.date.toLocaleString()
 
     return (
       <div className="each-date" onClick={this.handleClickDate}>

@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Doughnut, Line, Bar } from 'react-chartjs-2';
 
-import users from '../data/users.js'
-
 import StageBlockItem from './StageBlockItem.js'
-import UserBlockItem from './UserBlockItem.js'
-import DateBlockItem from './DateBlockItem.js'
+
+import ColumnLeft from './ColumnLeft.js'
+import ColumnMiddle from './ColumnMiddle.js'
+import ColumnRight from './ColumnRight.js'
 
 import AjaxAdapter from '../helpers/ajaxAdapter.js'
 
@@ -61,81 +61,34 @@ export default class App extends Component {
   }
 
   render () {
-    console.log("you're excellent");
     console.log("\n.-        -.\n| ,-. ,-.  |\n| |   | |  |\n| `-' `-|  |\n`-     ,| -'\n       `'    ")
 
     const { durationTotal, stages, rawData, activeUser, activeDateIndex } = this.state
     const { updateActiveUser, updateActiveDate, getData, handleElementClick } = this
 
-    const data = {
-        labels: ['Item 1', 'Item 2', 'Item 3'],
-        datasets: [
-            {
-                type: 'line',
-                label: 'Bar Component',
-                data: [10, 20, 30],
-            },
-            {
-                type: 'line',
-                label: 'Line Component',
-                data: [30, 20, 10],
-            }
-        ]
-    }
-
     return (
       <div>
-        <h1>Sleep Data!</h1>
-        <div className="users-container">
-          {
-            users
-            &&
-            users.map((each, i) => (
-              <UserBlockItem
-                key={`user-${i}`}
-                user={each}
-                getData={getData}
-                activeUser={activeUser}
-                update={updateActiveUser}
-              />
-            ))
-          }
-        </div>
-        <div className="date-container">
-          {
-            rawData
-            &&
-            rawData.intervals
-            &&
-            rawData.intervals.map((each, i) => (
-              <DateBlockItem
-                key={`date-${i}`}
-                date={each.ts}
-                index={i}
-                getData={getData}
-                activeIndex={activeDateIndex}
-                update={updateActiveDate}
-              />
-            ))
-          }
-        </div>
-        <div className="stages-container">
-          {
-            stages
-            &&
-            stages.map((each, i) => (
-              <StageBlockItem
-                key={`${each.stage}-${i}`}
-                total={durationTotal}
-                duration={each.duration}
-                type={each.stage}
-              />
-            ))
-          }
-        </div>
-        <div className="data-container">
-          <Bar data={data} onElementsClick={handleElementClick} />
-        </div>
+        <ColumnLeft 
+          activeUser={activeUser}
+          getData={getData}
+          update={updateActiveUser}
+        />
+        {
+          rawData
+          &&
+          rawData.intervals
+          &&
+          <ColumnMiddle
+            getData={getData}
+            activeIndex={activeDateIndex}
+            update={updateActiveDate}
+            intervals={rawData.intervals}
+          />
+        }
+        <ColumnRight
+          stages={stages}
+          durationTotal={durationTotal}
+        />
       </div>
     )
   }

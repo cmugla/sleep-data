@@ -4,7 +4,7 @@ class UserBlockItem extends Component {
   state={}
 
   handleClickUser = async () => {
-    await this.props.update(user.code)
+    await this.props.update(this.props.user.code)
     this.props.getData()
   }
 

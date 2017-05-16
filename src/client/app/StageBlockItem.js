@@ -1,27 +1,20 @@
 import React, { Component } from 'react'
 
+import { colors } from '../data/colors.js'
+
 class StageBlockItem extends Component {
-  state={
-    colors: {
-      awake: "#FF6384",
-      light: "#36A2EB",
-      deep: "#FFCE56",
-      out: "rgba(75,192,192,1)",
-    }
-  }
+  state={}
 
   render() {
     const { total, duration, type } = this.props
-    const durationPercentage = (duration / total) * 100 
+    const durationPercentage = (duration / total) 
     const styleObj = {
-      backgroundColor: this.state.colors[type],
-      width: `${durationPercentage}%`
+      backgroundColor: colors[type],
+      height: `${800 * durationPercentage}px`
     }
 
     return (
-      <div className="each-stage" style={styleObj}>
-        <p>{type}</p>
-      </div>
+      <div className="each-stage" style={styleObj} />
     )
   }
 }
