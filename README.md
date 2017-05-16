@@ -8,7 +8,7 @@ Follow the following instructions from the command line.
 First clone the repo to your local machine, with command:
 
 ```
-git clone git@github.com:cmugla/mortgage-search.git
+git clone git@github.com:cmugla/sleep-data.git
 ```
 
 Then run the npm install:
