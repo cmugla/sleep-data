@@ -32,6 +32,7 @@ export default class App extends Component {
         rawData: data,
         stages: data.intervals[activeDateIndex].stages,
         sleepScore: data.intervals[activeDateIndex].score,
+        timeseries: data.intervals[activeDateIndex].timeseries,
       })
       this.setPrettyData()
     })
@@ -60,8 +61,11 @@ export default class App extends Component {
   render () {
     console.log("\n.-        -.\n| ,-. ,-.  |\n| |   | |  |\n| `-' `-|  |\n`-     ,| -'\n       `'    ")
 
-    const { durationTotal, stages, rawData, activeUser, activeDateIndex, sleepScore } = this.state
+    const { durationTotal, stages, rawData, activeUser, activeDateIndex, sleepScore, timeseries } = this.state
     const { updateActiveUser, updateActiveDate, getData } = this
+    const startTimeDate = rawData && rawData.intervals && rawData.intervals[activeDateIndex].ts && new Date(rawData.intervals[activeDateIndex].ts)
+    const startTime = startTimeDate && startTimeDate.getTime()
+    const endTime = startTime && (startTimeDate + durationTotal)
 
     return (
       <div>
@@ -86,6 +90,9 @@ export default class App extends Component {
         <ColumnRight
           stages={stages}
           durationTotal={durationTotal}
+          timeseries={timeseries}
+          endTime={endTime}
+          startTime={startTime}
         />
       </div>
     )

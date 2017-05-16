@@ -7,6 +7,7 @@ body {
 .stages-container {
   width: 20px;
   margin: 0 1.5rem;
+  position: relative;
 }
 
 .each-stage {
@@ -85,4 +86,39 @@ p {
 .date-container {
 	position: absolute;
 	bottom: calc(20px + 5rem);
+}
+
+.tnt-container, .temp-room-container, .respiratory-rate, .heart-rate, .time-container {
+	position: absolute;
+	top: 20px;
+	left: 60px;
+}
+.tnt-container {
+	width: 150px;
+}
+.temp-room-container {
+	width: 250px;
+}
+.respiratory-rate {
+	width: 350px;
+}
+.heart-rate {
+	width: 450px;
+}
+.time-container {
+	width: 550px;
+}
+
+.each-timeseries {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	border-bottom: solid #c1a8d7 1px;
+}
+.each-timeseries p {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	font-size: 10px;
+	text-align: right;
 }
