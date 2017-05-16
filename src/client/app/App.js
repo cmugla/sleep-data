@@ -1,7 +1,6 @@
 import '../css/base.css'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { Doughnut, Line, Bar } from 'react-chartjs-2';
 
 import StageBlockItem from './StageBlockItem.js'
 
