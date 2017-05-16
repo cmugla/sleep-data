@@ -18,7 +18,11 @@ var config = {
       {
         test: /\.js?/,
         include: APP_DIR,
-        loader: 'babel-loader',
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'babel-loader',
+          options: { presets: ["es2015", "react", "stage-0"] },
+        }]
       },
       {
         test: /\.css$/,
@@ -31,8 +35,8 @@ var config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      // 'process.env.NODE_ENV': JSON.stringify('production')
-      'process.env.NODE_ENV': JSON.stringify('dev')
+      'process.env.NODE_ENV': JSON.stringify('production')
+      // 'process.env.NODE_ENV': JSON.stringify('dev')
     }),
     new HtmlWebpackPlugin({
       title: 'Celeste Glavin - Sleep Data',
